@@ -33,7 +33,7 @@ from mrcnn import model as modellib, utils
 
 
 PRETRAINED_MODEL_PATH = os.path.join("../", "pretrained_weights.h5")
-LOGS_DIRECTORY = os.path.join(ROOT_DIR, "logs")
+LOGS_DIRECTORY = os.path.join(ROOT_DIR, "../logs")
 
 class MappingChallengeConfig(Config):
     """Configuration for training on data in MS COCO format.
@@ -80,24 +80,24 @@ val_coco = dataset_val.load_dataset(dataset_dir=os.path.join("../", "val"), load
 dataset_val.prepare()
 
 # Training - Stage 1
-print("Training network heads")
-model.train(dataset_train, dataset_val,
-            learning_rate=config.LEARNING_RATE,
-            epochs=10,
-            layers='heads')
+#print("Training network heads")
+#model.train(dataset_train, dataset_val,
+#            learning_rate=config.LEARNING_RATE,
+#            epochs=10,
+#            layers='heads')
 
 # Training - Stage 2
 # Finetune layers from ResNet stage 4 and up
-print("Fine tune Resnet stage 4 and up")
-model.train(dataset_train, dataset_val,
-            learning_rate=config.LEARNING_RATE,
-            epochs=20,
-            layers='4+')
+#print("Fine tune Resnet stage 4 and up")
+#model.train(dataset_train, dataset_val,
+#            learning_rate=config.LEARNING_RATE,
+#            epochs=20,
+#            layers='4+')
 
 # Training - Stage 3
 # Fine tune all layers
 print("Fine tune all layers")
 model.train(dataset_train, dataset_val,
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=40,
+            epochs=100,
             layers='all')
