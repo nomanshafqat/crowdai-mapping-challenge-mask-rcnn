@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import numpy as np
-
+import sys
 # Download and install the Python COCO tools from https://github.com/waleedka/coco
 # That's a fork from the original https://github.com/pdollar/coco with a bug
 # fix for Python 3.
@@ -32,7 +32,7 @@ from mrcnn.config import Config
 from mrcnn import model as modellib, utils
 
 
-PRETRAINED_MODEL_PATH = os.path.join("../", "pretrained_weights.h5")
+PRETRAINED_MODEL_PATH = os.path.join(sys.argv[1])
 LOGS_DIRECTORY = os.path.join(ROOT_DIR, "../logs")
 
 class MappingChallengeConfig(Config):
