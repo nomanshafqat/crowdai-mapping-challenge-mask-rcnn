@@ -79,25 +79,37 @@ dataset_val = MappingChallengeDataset()
 val_coco = dataset_val.load_dataset(dataset_dir=os.path.join("../", "val"), load_small=True, return_coco=True)
 dataset_val.prepare()
 
-# Training - Stage 1
-#print("Training network heads")
-#model.train(dataset_train, dataset_val,
-#            learning_rate=config.LEARNING_RATE,
-#            epochs=10,
-#            layers='heads')
-
+Training - Stage 1
+print("Training network heads")
+model.train(dataset_train, dataset_val,
+            learning_rate=config.LEARNING_RATE,
+            epochs=5,
+            layers='heads')
+model_path = os.path.join(MODEL_DIR, "mask_rcnn_5.h5")
+model.keras_model.save_weights(model_path)
 # Training - Stage 2
-# Finetune layers from ResNet stage 4 and up
-#print("Fine tune Resnet stage 4 and up")
-#model.train(dataset_train, dataset_val,
-#            learning_rate=config.LEARNING_RATE,
-#            epochs=20,
-#            layers='4+')
-
+Finetune layers from ResNet stage 4 and up
+print("Fine tune Resnet stage 4 and up")
+model.train(dataset_train, dataset_val,
+            learning_rate=config.LEARNING_RATE,
+            epochs=10,
+            layers='4+')
+model_path = os.path.join(MODEL_DIR, "mask_rcnn_10.h5")
+model.keras_model.save_weights(model_path)
 # Training - Stage 3
 # Fine tune all layers
 print("Fine tune all layers")
 model.train(dataset_train, dataset_val,
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=100,
+            epochs=10,
             layers='all')
+model_path = os.path.join(MODEL_DIR, "mask_rcnn_20.h5")
+model.keras_model.save_weights(model_path)
+
+print("Fine tune all layers")
+model.train(dataset_train, dataset_val,
+            learning_rate=config.LEARNING_RATE / 10,
+            epochs=10,
+            layers='all')
+model_path = os.path.join(MODEL_DIR, "mask_rcnn_30.h5")
+model.keras_model.save_weights(model_path)
