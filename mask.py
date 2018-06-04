@@ -99,5 +99,5 @@ for i in range (1,20):
                 learning_rate=config.LEARNING_RATE / 10,
                 epochs=5,
                 layers='all')
-    model_path = os.path.join("../logs", "fresh+"+str(i)".h5")
+    model_path = os.path.join("../logs", "fresh"+str(i)+".h5")
     model.keras_model.save_weights(model_path)
