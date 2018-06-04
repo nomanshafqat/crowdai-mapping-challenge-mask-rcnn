@@ -55,10 +55,10 @@ class MappingChallengeConfig(Config):
 
     STEPS_PER_EPOCH=1000
     VALIDATION_STEPS=50
+    LEARNING_RATE=1e-5
 
-
-    IMAGE_MAX_DIM=320
-    IMAGE_MIN_DIM=320
+    IMAGE_MAX_DIM=256
+    IMAGE_MIN_DIM=256
 
 config = MappingChallengeConfig()
 config.display()
