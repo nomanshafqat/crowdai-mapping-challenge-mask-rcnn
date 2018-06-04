@@ -80,20 +80,24 @@ val_coco = dataset_val.load_dataset(dataset_dir=os.path.join("../", "val"), load
 dataset_val.prepare()
 
 
+model_path = os.path.join("../logs", "fresh-test.h5")
+model.keras_model.save_weights(model_path)
 # Training - Stage 3
 # Fine tune all layers
 print("Fine tune all layers")
 model.train(dataset_train, dataset_val,
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=10,
+            epochs=1,
             layers='all')
-model_path = os.path.join(".", "mask_rcnn_20.h5")
+
+model_path = os.path.join("../logs", "fresh_.h5")
 model.keras_model.save_weights(model_path)
 
-print("Fine tune all layers")
-model.train(dataset_train, dataset_val,
-            learning_rate=config.LEARNING_RATE / 10,
-            epochs=10,
-            layers='all')
-model_path = os.path.join(".", "mask_rcnn_30.h5")
-model.keras_model.save_weights(model_path)
+for i in range (1,20):
+    print("Fine tune all layers")
+    model.train(dataset_train, dataset_val,
+                learning_rate=config.LEARNING_RATE / 10,
+                epochs=5,
+                layers='all')
+    model_path = os.path.join("../logs", "fresh+"+str(i)".h5")
+    model.keras_model.save_weights(model_path)
