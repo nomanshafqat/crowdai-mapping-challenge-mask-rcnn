@@ -53,7 +53,7 @@ class MappingChallengeConfig(Config):
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # 1 Backgroun + 1 Building
 
-    STEPS_PER_EPOCH=1000
+    STEPS_PER_EPOCH=100
     VALIDATION_STEPS=50
     LEARNING_RATE=1e-5
 
