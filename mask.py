@@ -87,7 +87,7 @@ model.train(dataset_train, dataset_val,
             learning_rate=config.LEARNING_RATE / 10,
             epochs=10,
             layers='all')
-model_path = os.path.join(MODEL_DIR, "mask_rcnn_20.h5")
+model_path = os.path.join(".", "mask_rcnn_20.h5")
 model.keras_model.save_weights(model_path)
 
 print("Fine tune all layers")
@@ -95,5 +95,5 @@ model.train(dataset_train, dataset_val,
             learning_rate=config.LEARNING_RATE / 10,
             epochs=10,
             layers='all')
-model_path = os.path.join(MODEL_DIR, "mask_rcnn_30.h5")
+model_path = os.path.join(".", "mask_rcnn_30.h5")
 model.keras_model.save_weights(model_path)
